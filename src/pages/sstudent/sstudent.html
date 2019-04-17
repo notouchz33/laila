@@ -1,0 +1,153 @@
+<!--
+  Generated template for the SstudentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="studentplan" >
+    <ion-title >ตารางเรียน<ion-icon name="md-home" style="float: right; " round (click)="gotoIndex()" ></ion-icon></ion-title>
+  </ion-navbar>
+  <ion-segment>
+      <ion-segment-button value="insert" style="color:white" (click)="gotoStudent()">
+        เพิ่มข้อมูล
+      </ion-segment-button>
+      <ion-segment-button value="view" style="color:black">
+        <ion-card style="background-color:white;border-radius:5px;display: inline;padding: 5px">
+          แสดงข้อมูล
+          </ion-card>
+      </ion-segment-button> 
+    </ion-segment>
+  </ion-header>
+ 
+<ion-content padding>
+  <ion-item>
+    <ion-label>แสดงผล</ion-label>
+    <ion-select [(ngModel)]="mytype" (ionChange)="type()">
+      <ion-option value="day">รายวัน</ion-option>
+      <ion-option value="week">สัปดาห์</ion-option>
+    </ion-select>
+  </ion-item>
+        <div *ngIf="day">
+            <ion-grid text-center>
+              <ion-row style="background-color:rgb(13, 98, 119)">
+                  <ion-col>
+                    <ion-segment  [(ngModel)]="day" (ionChange)="day">
+                    <ion-segment-button value="1" style="color:white" (click)="studentData()">
+                      จันทร์
+                    </ion-segment-button>
+                    <ion-segment-button value="2" style="color:white" (click)="studentData()">
+                      อังคาร  <br>
+                      <br></ion-segment-button>
+                    <ion-segment-button value="3" style="color:white" (click)="studentData()">
+                      พุธ
+                    </ion-segment-button>
+                    <ion-segment-button value="4" style="color:white" (click)="studentData()">
+                      พฤหัสบดี<br>
+                    <br></ion-segment-button>
+                    <ion-segment-button value="5" style="color:white" (click)="studentData()">
+                      ศุกร์
+                    </ion-segment-button>
+                  </ion-segment></ion-col>
+                </ion-row>
+              </ion-grid>
+                  <ion-grid text-center>
+                      <ion-row style="background-color:rgb(13, 98, 119)">
+                        <ion-col>เวลาเริ่ม</ion-col>
+                        <ion-col>สิ้นสุด</ion-col>
+                        <ion-col>รหัสวิชา</ion-col>
+                        <ion-col>วิชา</ion-col>
+                        <ion-col>ห้องเรียน</ion-col>
+                      </ion-row>
+                    </ion-grid>
+        <ion-row  *ngFor="let student of studentList">
+              <ion-col>{{student.time1}}</ion-col>
+              <ion-col>{{student.time2}}</ion-col>
+              <ion-col>{{student.idsub}}</ion-col>
+              <ion-col>{{student.subject}}</ion-col> 
+              <ion-col>{{student.room}}</ion-col> 
+              </ion-row>
+
+        </div>
+
+  <!--   สัปดาห์      -->
+        <div  *ngIf="week">
+        <ion-card style="background-color:rgb(227, 240, 111)">
+                <ion-col>วัน</ion-col>     
+                <ion-col>เวลาเริ่ม</ion-col>
+                <ion-col>สิ้นสุด</ion-col>
+                <ion-col>รหัสวิชา</ion-col>
+                <ion-col>วิชา</ion-col>
+                <ion-col>ห้องเรียน</ion-col>
+        </ion-card>          
+       <!-- <div *ngFor = "let day of dayList " > -->
+      <ion-grid>
+        <ion-row>
+          <ion-col style="background-color:rgb(111, 240, 128)" col-2>
+              <!-- <ion-card > -->
+                  <ion-row value="1">จันทร์</ion-row>
+                  <ion-row value="2">อังคาร</ion-row><br>
+                  <ion-row value="3"> พุธ</ion-row>
+                  <ion-row value="4">พฤหัสบดี</ion-row><br>
+                  <ion-row value="5">ศุกร์</ion-row>
+                <!-- </ion-card> -->
+          </ion-col>
+
+          <ion-col>
+            <!-- <div *ngIf="1">  -->
+                <div  *ngFor="let student of studentList">
+                    <ion-col>{{student.time1}}</ion-col>
+                    <ion-col>{{student.time2}}</ion-col>
+                    <ion-col>{{student.idsub}}</ion-col>
+                    <ion-col>{{student.subject}}</ion-col> 
+                    <ion-col>{{student.room}}</ion-col> 
+                  <!-- </div> -->
+              </div>
+<!-- 
+              <div *ngIf="2">
+                  <div  *ngFor="let student of studentList">
+                      <ion-col>{{student.time1}}</ion-col>
+                      <ion-col>{{student.time2}}</ion-col>
+                      <ion-col>{{student.idsub}}</ion-col>
+                      <ion-col>{{student.subject}}</ion-col> 
+                      <ion-col>{{student.room}}</ion-col> 
+                    </div>
+                </div>
+
+                <div *ngIf="3">
+                    <div  *ngFor="let student of studentList">
+                        <ion-col>{{student.time1}}</ion-col>
+                        <ion-col>{{student.time2}}</ion-col>
+                        <ion-col>{{student.idsub}}</ion-col>
+                        <ion-col>{{student.subject}}</ion-col> 
+                        <ion-col>{{student.room}}</ion-col> 
+                      </div>
+                  </div>
+
+                  <div *ngIf="4">
+                      <div  *ngFor="let student of studentList">
+                          <ion-col>{{student.time1}}</ion-col>
+                          <ion-col>{{student.time2}}</ion-col>
+                          <ion-col>{{student.idsub}}</ion-col>
+                          <ion-col>{{student.subject}}</ion-col> 
+                          <ion-col>{{student.room}}</ion-col> 
+                        </div>
+                    </div>
+
+                    <div *ngIf="5">
+                        <div  *ngFor="let student of studentList">
+                            <ion-col>{{student.time1}}</ion-col>
+                            <ion-col>{{student.time2}}</ion-col>
+                            <ion-col>{{student.idsub}}</ion-col>
+                            <ion-col>{{student.subject}}</ion-col> 
+                            <ion-col>{{student.room}}</ion-col> 
+                          </div>
+                      </div> -->
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    <!-- </div> -->
+  </div>
+            
+</ion-content>

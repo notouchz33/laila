@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="studentplan" >
+    <ion-title >บันทึกช่วยจำ<ion-icon name="md-home" style="float: right; " round (click)="gotoIndex()" ></ion-icon></ion-title>
+  </ion-navbar>
+  <ion-segment>
+      <ion-segment-button value="insert" style="color:black" >
+        <ion-card style="background-color:white;border-radius:5px;display: inline;padding: 5px">
+        เพิ่มข้อมูล
+      </ion-card>
+      </ion-segment-button>
+      <ion-segment-button value="view" style="color:white" (click)="gotoSmemo()">
+          แสดงข้อมูล 
+      </ion-segment-button>
+    </ion-segment>
+  </ion-header>
+  <ion-content padding>
+      <ion-list>
+          <ion-item>
+            <ion-label for="date"> วันที่ : </ion-label>
+            <ion-input type="date" id="date" name="date" [(ngModel)]="date"></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-item>
+              <ion-label>ประเภท : </ion-label>
+              <ion-select [(ngModel)]="type" name="type">
+                <ion-option>นัดหมาย</ion-option>
+                <ion-option>สอบ</ion-option>
+                <ion-option>เดินทาง</ion-option>
+                <ion-option>ชั้นเรียน</ion-option>
+              </ion-select>  
+            </ion-item>
+            </ion-list>
+      
+            <ion-list>
+                <ion-item>
+                  <ion-label> เรื่อง : </ion-label>
+                  <ion-input type="text" [(ngModel)]="detail" name="detail"></ion-input>
+                </ion-item>
+              </ion-list>
+            
+            <ion-list text-center>
+              <button ion-button round (click)="memo(date,type,detail)">บันทึก</button>
+              <button ion-button round (click)="reset">ยกเลิก</button>
+            </ion-list>
+          
+       
+        
+        </ion-content> 

@@ -1,0 +1,78 @@
+<!--
+  Generated template for the SmoneyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="studentplan" >
+    <ion-title >บัญชีครัวเรือน<ion-icon name="md-home" style="float: right; " round (click)="gotoIndex()" ></ion-icon></ion-title>
+  </ion-navbar>
+  <ion-segment>
+      <ion-segment-button value="insert" style="color:white" (click)="money2()">
+        เพิ่มข้อมูล
+      </ion-segment-button>
+      <ion-segment-button value="view" style="color:black">
+        <ion-card style="background-color:white;border-radius:5px;display: inline;padding: 5px">
+          แสดงข้อมูล
+          </ion-card>
+      </ion-segment-button>
+      <ion-segment-button value="puppies" style="color:white" (click)="gotoCount()">
+       วิเคราะห์
+      </ion-segment-button>
+    </ion-segment>
+  </ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>ประเภท</ion-label>
+    <ion-select [(ngModel)]="mytype" (ionChange)="type()">
+      <ion-option value="income">รายรับ</ion-option>
+      <ion-option value="charge">รายจ่าย</ion-option>
+      <ion-option value="all" >รายรับ รายจ่าย</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-grid text-center>
+    <ion-row style="background-color:rgb(13, 98, 119)">
+      <ion-col>วันที่</ion-col>
+      <ion-col>ประเภท</ion-col>
+      <ion-col>จำนวนเงิน</ion-col> 
+      <ion-col>รายละเอียด</ion-col>
+    </ion-row>
+    <div *ngIf="income">
+    <ion-row  *ngFor="let money of moneyList">
+      <ion-col>{{money.date}}</ion-col>
+      <ion-col>{{money.type}}</ion-col>
+      <ion-col>{{money.moneyy}}</ion-col>
+      <ion-col>{{money.detail}}</ion-col><br>
+      </ion-row>
+      <hr>  <br>
+      <button ion-button round (click)="PlusData()">ผลรวม</button>
+    <br>  <div style="width: 180px;height: 42px;background:white;margin-left: 70px;padding: 11px;border-radius: 12px;font-weight: bold;">
+        ผลรวมทั้งหมด {{income}} บาท
+      </div><br><hr><br>
+    </div>
+    
+    <div *ngIf="charge">
+      <ion-row  *ngFor="let charge of chargeList">
+        <ion-col>{{charge.date}}</ion-col>
+        <ion-col>{{charge.type}}</ion-col> 
+        <ion-col>{{charge.moneyy}}</ion-col>
+        <ion-col>{{charge.detail}}</ion-col>
+        </ion-row>
+  <hr><br>
+        <button ion-button round (click)="sumData(money1)">ผลรวม</button>
+    <br>    <div style="width: 180px;height: 42px;background:white;margin-left: 70px;padding: 11px;border-radius: 12px;font-weight: bold;">
+          ผลรวมทั้งหมด {{charge}} บาท
+        </div>
+      </div> 
+<!--  
+      <ion-row  *ngFor="let charge of chargeList">
+        <ion-col>{{charge.date}}</ion-col>
+        <ion-col>{{charge.charge}}</ion-col>
+        <ion-col>{{charge.detail}}</ion-col>
+        </ion-row> -->
+  </ion-grid>
+
+
+</ion-content>
